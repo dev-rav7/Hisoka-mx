@@ -18,7 +18,23 @@ if(!q) return reply("Need some text.")
   slow: false,
   host: 'https://translate.google.com',
 })
-await conn.sendMessage(from, { audio: { url: url }, mimetype: 'audio/mpeg', ptt: true }, { quoted: mek })
+const contextInfo = {
+    mentionedJid: [mek.sender],
+    forwardingScore: 999,
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363400575205721@newsletter',
+        newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+        serverMessageId: 143,
+    },
+};
+
+await conn.sendMessage(from, { 
+    audio: { url: url }, 
+    mimetype: 'audio/mpeg', 
+    ptt: true,
+    contextInfo: contextInfo
+}, { quoted: mek })
     }catch(a){
 reply(`${a}`)
 }

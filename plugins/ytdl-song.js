@@ -72,21 +72,28 @@ ${config.FOOTER || "『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』"}
                 let msg;
                 let type;
                 let response;
-                
+                const contextInfo = mekInfo?.message?.extendedTextMessage?.contextInfo
+
                 if (userReply === "1") {
-                    msg = await conn.sendMessage(from, { text: "⏳ Processing..." }, { quoted: mek });
+                    msg = await conn.sendMessage(from, { 
+                        text: "⏳ Processing...",
+                        contextInfo: contextInfo
+                    }, { quoted: mek });
                     response = await dy_scrap.ytmp3(`https://youtube.com/watch?v=${id}`);
                     let downloadUrl = response?.result?.download?.url;
                     if (!downloadUrl) return await reply("❌ Download link not found!");
                     type = { audio: { url: downloadUrl }, mimetype: "audio/mpeg" };
-                    
+
                 } else if (userReply === "2") {
-                    msg = await conn.sendMessage(from, { text: "⏳ Processing..." }, { quoted: mek });
+                    msg = await conn.sendMessage(from, { 
+                        text: "⏳ Processing...",
+                        contextInfo: contextInfo
+                    }, { quoted: mek });
                     const response = await dy_scrap.ytmp3(`https://youtube.com/watch?v=${id}`);
                     let downloadUrl = response?.result?.download?.url;
                     if (!downloadUrl) return await reply("❌ Download link not found!");
                     type = { document: { url: downloadUrl }, fileName: `${title}.mp3`, mimetype: "audio/mpeg", caption: title };
-                    
+
                 } else { 
                     return await reply("❌ Invalid choice! Reply with 1 or 2.");
                 }
@@ -106,4 +113,3 @@ ${config.FOOTER || "『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』"}
         await reply(`❌ *An error occurred:* ${error.message || "Error!"}`);
     }
 });
-                               
