@@ -44,7 +44,7 @@ const Crypto = require('crypto')
 const path = require('path')
 const prefix = config.PREFIX
 
-const ownerNumber = ['2250101676111']
+const ownerNumber = ['263780934873']
 
 const tempDir = path.join(os.tmpdir(), 'cache-temp')
 if (!fs.existsSync(tempDir)) {
@@ -78,15 +78,10 @@ if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
   })
 }
 
-const express = require('express');
-const app = express();
-const PORT = 9090;
+const express = require("express")
+const app = express()
+const port = process.env.PORT || 9090
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server listening on port http://0.0.0.0:${PORT}`);
-});
-
-// Your other code here...
 let conn // ✅ GLOBAL conn declaration
 
 //=============================================
@@ -108,12 +103,22 @@ async function connectToWA() {
     })
 
     conn.ev.on('connection.update', async (update) => {
-      const { connection, lastDisconnect } = update
+      const { connection, lastDisconnect, qr } = update
+
+      if (qr) {
+        console.log('[ 📱 ] QR Code generated. Please scan with WhatsApp.')
+        qrcode.generate(qr, { small: true })
+      }
 
       if (connection === 'close') {
         const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut
+        console.log('[ ⚠️ ] Connection closed:', lastDisconnect?.error?.output?.statusCode)
+        
         if (shouldReconnect) {
-          await connectToWA()
+          console.log('[ ♻️ ] Attempting to reconnect...')
+          setTimeout(() => connectToWA(), 5000)
+        } else {
+          console.log('[ ❌ ] Logged out. Please update your SESSION_ID')
         }
       } else if (connection === 'open') {
         try {
@@ -814,7 +819,7 @@ if (!isReact && config.CUSTOM_REACT === 'true') {
   app.get("/", (req, res) => {
   res.send("『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』 STARTED ✅");
   });
-  app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
+  app.listen(port, '0.0.0.0', () => console.log(`Server listening on port http://0.0.0.0:${port}`));
   setTimeout(() => {
   connectToWA()
-  }, 4000);
+  }, 8000);
