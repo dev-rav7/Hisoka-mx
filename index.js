@@ -44,7 +44,7 @@ const Crypto = require('crypto')
 const path = require('path')
 const prefix = config.PREFIX
 
-const ownerNumber = ['263780934873']
+const ownerNumber = ['2250101676111']
 
 const tempDir = path.join(os.tmpdir(), 'cache-temp')
 if (!fs.existsSync(tempDir)) {
@@ -78,10 +78,15 @@ if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
   })
 }
 
-const express = require("express")
-const app = express()
-const port = process.env.PORT || 9090
+const express = require('express');
+const app = express();
+const PORT = 9090;
 
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server listening on port http://0.0.0.0:${PORT}`);
+});
+
+// Your other code here...
 let conn // ✅ GLOBAL conn declaration
 
 //=============================================
