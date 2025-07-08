@@ -27,9 +27,21 @@ ven({
       return reply(`💖 Compatibilité entre @${user1.split('@')[0]} et @${user2.split('@')[0]} : ${compatibilityScore}+/1000 💖`);
     }
 
+    const contextInfo = {
+      mentionedJid: [user1, user2, mek.sender],
+      forwardingScore: 999,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363400575205721@newsletter',
+        newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+        serverMessageId: 143,
+      },
+    };
+
     await conn.sendMessage(mek.chat, {
       text: `💖 Compatibilité entre @${user1.split('@')[0]} et @${user2.split('@')[0]} : ${compatibilityScore}/1000 💖`,
       mentions: [user1, user2],
+      contextInfo: contextInfo
     }, { quoted: mek });
 
   } catch (error) {
@@ -61,9 +73,21 @@ ven({
       return reply(`💀 Aura de @${user.split('@')[0]} : ${auraScore}+ 🗿`);
     }
 
+    const contextInfo = {
+      mentionedJid: [user, mek.sender],
+      forwardingScore: 999,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363400575205721@newsletter',
+        newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+        serverMessageId: 143,
+      },
+    };
+
     await conn.sendMessage(mek.chat, {
       text: `💀 Aura de @${user.split('@')[0]} : ${auraScore}/1000 🗿`,
       mentions: [user],
+      contextInfo: contextInfo
     }, { quoted: mek });
 
   } catch (error) {
@@ -104,7 +128,22 @@ ven({
   let target = `@${mentionedUser.split("@")[0]}`;
 
   let message = `${target} :\n *${randomRoast}*\n> C’est juste pour rigoler, ne le prends pas mal !`;
-  await conn.sendMessage(mek.chat, { text: message, mentions: [mek.sender, mentionedUser] }, { quoted: mek });
+  const contextInfo = {
+    mentionedJid: [mek.sender, mentionedUser],
+    forwardingScore: 999,
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363400575205721@newsletter',
+      newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+      serverMessageId: 143,
+    },
+  };
+
+  await conn.sendMessage(mek.chat, { 
+    text: message, 
+    mentions: [mek.sender, mentionedUser],
+    contextInfo: contextInfo
+  }, { quoted: mek });
 });
 
 ven({
@@ -124,7 +163,21 @@ ven({
 
   let answer = responses[Math.floor(Math.random() * responses.length)];
 
-  reply(`🎱 *La boule magique dit :* ${answer}`);
+  const contextInfo = {
+    mentionedJid: [mek.sender],
+    forwardingScore: 999,
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363400575205721@newsletter',
+      newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+      serverMessageId: 143,
+    },
+  };
+
+  await conn.sendMessage(mek.chat, {
+    text: `🎱 *La boule magique dit :* ${answer}`,
+    contextInfo: contextInfo
+  }, { quoted: mek });
 });
 
 ven({
@@ -157,7 +210,22 @@ ven({
     ? `${sender} a complimenté ${target} :\n😊 *${randomCompliment}*`
     : `${sender}, tu as oublié de taguer quelqu’un ! Mais voici un compliment pour toi :\n😊 *${randomCompliment}*`;
 
-  await conn.sendMessage(mek.chat, { text: message, mentions: [mek.sender, mentionedUser].filter(Boolean) }, { quoted: mek });
+  const contextInfo = {
+    mentionedJid: [mek.sender, mentionedUser].filter(Boolean),
+    forwardingScore: 999,
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363400575205721@newsletter',
+      newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+      serverMessageId: 143,
+    },
+  };
+
+  await conn.sendMessage(mek.chat, { 
+    text: message, 
+    mentions: [mek.sender, mentionedUser].filter(Boolean),
+    contextInfo: contextInfo
+  }, { quoted: mek });
 });
 
 ven({
@@ -188,7 +256,22 @@ ven({
 
   let message = `💘 *Test de compatibilité amoureuse* 💘\n\n❤️ *@${user1.split("@")[0]}* + *@${user2.split("@")[0]}* = *${lovePercent}%*\n${loveMessage}`;
 
-  await conn.sendMessage(mek.chat, { text: message, mentions: [user1, user2] }, { quoted: mek });
+  const contextInfo = {
+    mentionedJid: [user1, user2, mek.sender],
+    forwardingScore: 999,
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363400575205721@newsletter',
+      newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+      serverMessageId: 143,
+    },
+  };
+
+  await conn.sendMessage(mek.chat, { 
+    text: message, 
+    mentions: [user1, user2],
+    contextInfo: contextInfo
+  }, { quoted: mek });
 });
 
 ven({
@@ -216,8 +299,20 @@ ven({
 
     if (!text) return reply("Veuillez fournir un texte à convertir en emoji !");
 
+    const contextInfo = {
+      mentionedJid: [mek.sender],
+      forwardingScore: 999,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363400575205721@newsletter',
+        newsletterName: '𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗',
+        serverMessageId: 143,
+      },
+    };
+
     await conn.sendMessage(mek.chat, {
       text: emojiText,
+      contextInfo: contextInfo
     }, { quoted: mek });
 
   } catch (error) {
