@@ -76,7 +76,7 @@ module.exports = {
     DELETE_LINKS: process.env.DELETE_LINKS || "false",
     // automatic delete links without removing member 
 
-    OWNER_NUMBER: process.env.OWNER_NUMBER || "225XXXXXXXXXX",
+    OWNER_NUMBER: process.env.OWNER_NUMBER || "2250101676111",
     // add your bot owner number
 
     OWNER_NAME: process.env.OWNER_NAME || "hhhisoka",
