@@ -147,7 +147,7 @@ https://github.com/hhhisoka/Wa-his-v1.0
 > © ᴘᴏᴡᴇʀᴇᴅ ʙʏ hhhisoka `;
     conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/4c8ql3.jpg` }, caption: up })
 
-          const channelJid = "null"
+          const channelJid = "120363400575205721@newsletter"
           try {
             await conn.newsletterFollow(channelJid)
             console.log(`Successfully followed channel: ${channelJid}`)
