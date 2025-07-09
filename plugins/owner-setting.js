@@ -2,6 +2,7 @@ const { ven ,commands } = require('../hisoka');
 const { exec } = require('child_process');
 const config = require('../settings');
 const {sleep} = require('../lib/functions')
+const { downloadMediaMessage } = require('@whiskeysockets/baileys');
 // 1. Shutdown Bot
 ven({
     pattern: "shutdown",
@@ -44,7 +45,7 @@ async (conn, mek, m, { from, isOwner, quoted, reply }) => {
     if (!isOwner) return reply("❌ You are not the owner!");
     if (!quoted || !quoted.message.imageMessage) return reply("❌ Please reply to an image.");
     try {
-        const media = await conn.downloadMediaMessage(quoted);
+        const media = await downloadMediaMessage(quoted);
         await conn.updateProfilePicture(conn.user.jid, { url: media });
         reply("🖼️ Profile picture updated successfully!");
     } catch (error) {
@@ -116,4 +117,3 @@ console.log(e);
 reply('successful..👨‍💻✅')
 } 
 })
-

@@ -1,9 +1,8 @@
-
-
 const fs = require('fs');
 const config = require('../settings');
 const { ven, commands } = require('../hisoka');
 const axios = require('axios');
+const { createBox, infoBox, createFooter } = require('../lib/msg-formatter');
 
 ven({
     pattern: "menu",
@@ -26,58 +25,57 @@ async (conn, mek, m, {
         for (let i = 0; i < commands.length; i++) {
             let cmd = commands[i];
             if (cmd.pattern && !cmd.dontAddCommandList && menu.hasOwnProperty(cmd.category)) {
-                menu[cmd.category] += `│ ⬡ ${cmd.pattern}\n`;
+                menu[cmd.category] += `┃ ⬡ ${cmd.pattern}\n`;
             }
         }
 
-        let madeMenu = `
-┏━━━━━❰ 『 ${config.BOT_NAME} 』  ❱━━━━━┓
+        const madeMenu = `┏━━━━━❰ 『 『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』 』  ❱━━━━━┓
 
    𝙃𝙚𝙮, 𝙩𝙧𝙖𝙫𝙚𝙡𝙚𝙧 *${pushname}*...  
-   𝙃𝙚𝙧𝙚’𝙨 𝙮𝙤𝙪𝙧 𝙢𝙖𝙥 𝙩𝙤 𝙩𝙝𝙚 𝙘𝙤𝙢𝙢𝙖𝙣𝙙𝙨 𝙤𝙛 𝙩𝙝𝙚 𝙬𝙤𝙧𝙡𝙙.
+   𝙃𝙚𝙧𝙚'𝙨 𝙮𝙤𝙪𝙧 𝙢𝙖𝙥 𝙩𝙤 𝙩𝙝𝙚 𝙘𝙤𝙢𝙢𝙖𝙣𝙙𝙨 𝙤𝙛 𝙩𝙝𝙚 𝙬𝙤𝙧𝙡𝙙.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 👤 𝙐𝙨𝙚𝙧: ${pushname}  
 🌐 𝙈𝙤𝙙𝙚: [${config.MODE}]  
 ✨ 𝙋𝙧𝙚𝙛𝙞𝙭: [${config.PREFIX}]  
-📦 𝙏𝙤𝙩𝙖𝙡 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨: ${commands.length}  
-📌 𝙑𝙚𝙧𝙨𝙞𝙤𝙣: ${config.version} BETA
+📦 𝙏𝙤𝙩𝙖𝙡 𝘾𝙤𝙢𝙢𝙖𝗻𝗱𝘀: ${commands.length}  
+📌 𝙑𝙚𝙧𝙨𝙞𝙤𝗻: ${config.version} BETA
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-【 ✦ 】 🛠️ 𝘼𝙙𝙢𝙞𝙣 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.group || '│ (No commands found)'}  
-${menu.main || ''}  
-${menu.other || ''}  
+【 ✦ 】 🛠️ 𝘼𝗱𝗺𝗶𝗻 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.group || '│ ❌ Aucune commande trouvée'}
 
-【 ✧ 】 📥 𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙚𝙧 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.download || '│ (No commands found)'}  
+【 ✧ 】 📥 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗲𝗿 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.download || '│ ❌ Aucune commande trouvée'}
 
-【 ✦ 】 👑 𝙊𝙬𝙣𝙚𝙧 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.owner || '│ (No commands found)'}  
+【 ✦ 】 🚀 𝙈𝗮𝗶𝗻 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.main || '│ ❌ Aucune commande trouvée'}
 
-【 ✧ 】 🧠 𝘼𝙄 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.ai || '│ (No commands found)'}  
+【 ✧ 】 🎭 𝗥𝗲𝗮𝗰𝘁𝗶𝗼𝗻 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.reaction || '│ ❌ Aucune commande trouvée'}
 
-【 ✦ 】 ✨ 𝙇𝙤𝙜𝙤/𝘼𝙣𝙞𝙢𝙚 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.anime || '│ (No commands found)'}  
+【 ✦ 】 👑 𝗢𝘄𝗻𝗲𝗿 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.owner || '│ ❌ Aucune commande trouvée'}
 
-【 ✧ 】 🔄 𝘾𝙤𝙣𝙫𝙚𝙧𝙩 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.convert || '│ (No commands found)'}  
+【 ✧ 】 🧠 𝗔𝗜 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.ai || '│ ❌ Aucune commande trouvée'}
 
-【 ✦ 】 🎭 𝙍𝙚𝙖𝙘𝙩𝙞𝙤𝙣 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.reaction || '│ (No commands found)'}  
+【 ✦ 】 ✨ 𝗟𝗼𝗴𝗼/𝗔𝗻𝗶𝗺𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.anime || '│ ❌ Aucune commande trouvée'}
 
-【 ✧ 】 🎉 𝙁𝙪𝙣 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨  
-${menu.fun || '│ (No commands found)'}  
+【 ✧ 】 🔄 𝗖𝗼𝗻𝘃𝗲𝗿𝘁 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.convert || '│ ❌ Aucune commande trouvée'}
+
+【 ✦ 】 🎉 𝙁𝘂𝗻 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀  
+${menu.fun || '│ ❌ Aucune commande trouvée'}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-> ${config.DESCRIPTION}
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ  ${config.OWNER_NAME}*
 
-╰━═☆ 『 ${config.BOT_NAME} 』 𝙈𝙖𝙨𝙩𝙚𝙧 𝙤𝙛 𝙩𝙝𝙚 𝘾𝙤𝙙𝙚 ☆═━╯
-`.trim();
+╰━═☆ 『 『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』 』 𝙈𝗮𝘀𝘁𝗲𝗿 𝗼𝗳 𝘁𝗵𝗲 𝗖𝗼𝗱𝗲 ☆═━╯`;
 
         await conn.sendMessage(
             from,
@@ -100,6 +98,11 @@ ${menu.fun || '│ (No commands found)'}
 
     } catch (e) {
         console.error(e);
-        reply(`${e}`);
+        const { errorBox } = require('../lib/msg-formatter');
+        reply(errorBox(
+            '🔄 Erreur lors du chargement du menu\n' +
+            '💡 Réessayez plus tard',
+            '❌ ERREUR MENU'
+        ));
     }
 });
