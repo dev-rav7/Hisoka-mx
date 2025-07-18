@@ -7,8 +7,8 @@
 
 **Un bot WhatsApp intelligent et puissant utilisant le Pairing Code** 🔐
 
-[![GitHub Stars](https://img.shields.io/github/stars/hhhisoka/Wa-his-v1.0?style=for-the-badge&logo=github&color=yellow)](https://github.com/hhhisoka/Wa-his-v1.0/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/hhhisoka/Wa-his-v1.0?style=for-the-badge&logo=github&color=orange)](https://github.com/hhhisoka/Wa-his-v1.0/network/members)
+
+[![GitHub Forks](https://img.shields.io/github/forks/hhhisoka-bot/Hisoka-mx?style=for-the-badge&logo=github&color=orange)](https://github.com/hhhisoka-bot/Hisoka-mx/network/members)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)](LICENSE)
 
 </div>
@@ -62,7 +62,7 @@
 </div>
 
 #### 🔐 Procédure :
-1. Visitez le [générateur de session](https://wa-his-session.onrender.com/)
+1. Visitez le [générateur de session]((https://bot-session-oitd.onrender.com/))
 2. Entrez votre numéro WhatsApp
 3. Entrez le code reçu par SMS
 4. Copiez votre SESSION_ID généré
@@ -92,8 +92,8 @@ MODE=public
 
 ```bash
 # 1. Cloner le repository
-git clone https://github.com/hhhisoka/Wa-his-v1.0
-cd Wa-his-v1.0
+git clone https://github.com/hhhisoka-bot/Hisoka-mx
+cd Hisoka-mx
 
 # 2. Installer les dépendances
 npm install
