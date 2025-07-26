@@ -1,12 +1,12 @@
 const converter = require('../data/converter');
 const stickerConverter = require('../data/sticker-converter');
-const { ven } = require('../hisoka');
+const { cmd } = require('../command');
 
-ven({
+cmd({
     pattern: 'convert',
-    alias: ['toimg', 'img', 'stickertoimage', 's2i'],
+    alias: ['toimg', '2img', 'stickertoimage', 's2i'],
     desc: 'Convert stickers to images',
-    category: 'convert',
+    category: 'media',
     react: '🖼️',
     filename: __filename
 }, async (client, match, message, { from }) => {
@@ -35,7 +35,7 @@ ven({
         // Send result
         await client.sendMessage(from, {
             image: imageBuffer,
-            caption: "> XdKing2 is tha best",
+            caption: "> 𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗🤍",
             mimetype: 'image/png'
         }, { quoted: message });
 
@@ -47,10 +47,10 @@ ven({
     }
 });
 
-ven({
+cmd({
     pattern: 'tomp3',
     desc: 'Convert media to audio',
-    category: 'convert',
+    category: 'audio',
     react: '🎵',
     filename: __filename
 }, async (client, match, message, { from }) => {
@@ -97,23 +97,23 @@ ven({
     }
 });
 
-ven({
+cmd({
     pattern: 'toptt',
     desc: 'Convert media to voice message',
-    category: 'convert',
+    category: 'audio',
     react: '🎙️',
     filename: __filename
 }, async (client, match, message, { from }) => {
     // Input validation
     if (!match.quoted) {
         return await client.sendMessage(from, {
-            text: "> !! *🗣️ Please reply to a video/audio message*"
+            text: "*🗣️ Please reply to a video/audio message*"
         }, { quoted: message });
     }
 
     if (!['videoMessage', 'audioMessage'].includes(match.quoted.mtype)) {
         return await client.sendMessage(from, {
-            text: "> !! ❌ Only video/audio messages can be converted"
+            text: "❌ Only video/audio messages can be converted"
         }, { quoted: message });
     }
 
@@ -143,7 +143,7 @@ ven({
     } catch (e) {
         console.error('PTT conversion error:', e.message);
         await client.sendMessage(from, {
-            text: "> !!❌ Failed to create voice message"
+            text: "❌ Failed to create voice message"
         }, { quoted: message });
     }
 });

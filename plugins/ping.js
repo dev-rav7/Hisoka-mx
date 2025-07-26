@@ -1,15 +1,15 @@
-const config = require('../settings');
-const { ven, commands } = require('../hisoka');
+const config = require('../config');
+const { cmd, commands } = require('../command');
 
-ven({
-    pattern: "ping",
+cmd({
+    pattern: "ping2",
     alias: ["speed","pong"],use: '.ping',
     desc: "Check bot's response time.",
     category: "main",
-    react: "🔔",
+    react: "⚡",
     filename: __filename
 },
-async (conn, mek, m, { from, quoted, sender, reply }) => {
+async (conn, mek, m, { from, quoted, sender, reply, }) => {
     try {
         const start = new Date().getTime();
 
@@ -32,7 +32,7 @@ async (conn, mek, m, { from, quoted, sender, reply }) => {
         const end = new Date().getTime();
         const responseTime = (end - start) / 1000;
 
-        const text = `> *REPONSE'S SPEED: ${responseTime.toFixed(2)}m/s ${reactionEmoji}*`;
+        const text = `> * ${responseTime.toFixed(2)}ms ${reactionEmoji}*`;
 
         await conn.sendMessage(from, {
             text,
@@ -54,5 +54,24 @@ async (conn, mek, m, { from, quoted, sender, reply }) => {
     }
 });
 
+// ping2 
 
-
+cmd({
+    pattern: "ping",
+    desc: "Check bot's response time.",
+    category: "main",
+    react: "🍂",
+    filename: __filename
+},
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    try {
+        const startTime = Date.now()
+        const message = await conn.sendMessage(from, { text: '*PINGING...*' })
+        const endTime = Date.now()
+        const ping = endTime - startTime
+        await conn.sendMessage(from, { text: ` ${ping}ms*` }, { quoted: message })
+    } catch (e) {
+        console.log(e)
+        reply(`${e}`)
+    }
+})

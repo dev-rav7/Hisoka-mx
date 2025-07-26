@@ -1,9 +1,9 @@
-const { ven } = require("../hisoka");  
+const { cmd } = require("../command");  
 const { sleep } = require("../lib/functions");  
 
-ven({  
+cmd({  
     pattern: "restart",  
-    desc: "Restart 𝗛𝗜𝗦𝗢𝗞𝗔-𝗠𝗗",  
+    desc: "Restart CRISS-AI",  
     category: "owner",  
     filename: __filename  
 },  

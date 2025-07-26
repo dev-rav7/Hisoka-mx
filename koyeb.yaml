@@ -1,6 +1,6 @@
 name: Wa-his-v1
 services:
-  - name: wa-his-v 1.0-service
+  - name: Wa-his-v1-service
     type: web
     ports:
       - 5000

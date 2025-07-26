@@ -1,33 +1,30 @@
+const axios = require('axios');
+const config = require('../config');
+const { cmd } = require('../command');
 
-const fs = require('fs');
-const path = require('path');
-const config = require('../settings');
-const { ven } = require('../hisoka');
+cmd({
+  on: 'body'
+}, async (conn, mek, m, { from, body }) => {
+  try {
+    const jsonUrl = 'https://raw.githubusercontent.com/criss-vevo/CRISS-DATA/main/autosticker.json';
+    const res = await axios.get(jsonUrl);
+    const data = res.data;
 
-ven({
-  on: "body"
-},
-async (conn, mek, m, { from, body }) => {
-    const filePath = path.join(__dirname, '../all/autosticker.json');
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-    for (const text in data) {
-        if (body.toLowerCase() === text.toLowerCase()) {
-            if (config.AUTO_STICKER === 'true') {
-                const stickerPath = path.join(__dirname, '../all/autosticker', data[text]);
-
-                if (fs.existsSync(stickerPath)) {
-                    const stickerBuffer = fs.readFileSync(stickerPath);
-
-                    await conn.sendMessage(from, {
-                        sticker: stickerBuffer,
-                        packname: '𝕽𝖆𝖛𝖊𝖓',
-                        author: '𝕽𝖆𝖛𝖊𝖓'
-                    }, { quoted: mek });
-                } else {
-                    console.warn(`Sticker not found: ${stickerPath}`);
-                }
-            }
+    for (const keyword in data) {
+      if (body.toLowerCase() === keyword.toLowerCase()) {
+        if (config.AUTO_STICKER === 'true') {
+          await conn.sendMessage(
+            from,
+            {
+              sticker: { url: data[keyword] },
+              package: '『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』'
+            },
+            { quoted: mek }
+          );
         }
+      }
     }
+  } catch (e) {
+    console.error('AutoSticker error:', e);
+  }
 });

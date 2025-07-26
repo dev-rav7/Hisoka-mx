@@ -1,18 +1,18 @@
-const config = require('../settings')
+const config = require('../config')
 const l = console.log
-const { ven, commands } = require('../hisoka')
+const { cmd, commands } = require('../command')
 const dl = require('@bochilteam/scraper')  
 const ytdl = require('yt-search');
 const fs = require('fs-extra')
 var videotime = 60000 // 1000 min
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson} = require('../lib/functions')
-ven({
+cmd({
     pattern: "yts",
     alias: ["ytsearch"],
-    use: '.yts hisoka',
+    use: '.yts jawad',
     react: "🔎",
     desc: "Search and get details from youtube.",
-    category: "download",
+    category: "search",
     filename: __filename
 
 },

@@ -1,4 +1,4 @@
-const { ven } = require("../hisoka");
+const { cmd } = require("../hisoka");
 const axios = require("axios");
 const config = require("../settings");
 
@@ -176,7 +176,7 @@ function getActionText(reactionType) {
 
 // === COMMANDES DE RÉACTION ===
 
-ven({
+cmd({
     pattern: "cry",
     desc: "Envoyer une réaction de pleurs avec GIF animé",
     category: "reaction",
@@ -187,7 +187,7 @@ ven({
     await sendReaction(conn, mek, m, "cry", "😢", "pleurs");
 });
 
-ven({
+cmd({
     pattern: "hug",
     desc: "Envoyer une réaction de câlin avec GIF animé",
     category: "reaction",
@@ -198,7 +198,7 @@ ven({
     await sendReaction(conn, mek, m, "hug", "🤗", "câlin");
 });
 
-ven({
+cmd({
     pattern: "kiss",
     desc: "Envoyer une réaction de bisou avec GIF animé",
     category: "reaction",
@@ -209,7 +209,7 @@ ven({
     await sendReaction(conn, mek, m, "kiss", "💋", "bisou");
 });
 
-ven({
+cmd({
     pattern: "slap",
     desc: "Envoyer une réaction de gifle avec GIF animé",
     category: "reaction",
@@ -220,7 +220,7 @@ ven({
     await sendReaction(conn, mek, m, "slap", "✋", "gifle");
 });
 
-ven({
+cmd({
     pattern: "pat",
     desc: "Envoyer une réaction de caresse avec GIF animé",
     category: "reaction",
@@ -231,7 +231,7 @@ ven({
     await sendReaction(conn, mek, m, "pat", "🫂", "caresse");
 });
 
-ven({
+cmd({
     pattern: "cuddle",
     desc: "Envoyer une réaction de câlin serré avec GIF animé",
     category: "reaction",
@@ -242,7 +242,7 @@ ven({
     await sendReaction(conn, mek, m, "cuddle", "🤗", "câlin serré");
 });
 
-ven({
+cmd({
     pattern: "bully",
     desc: "Envoyer une réaction d'embêtement avec GIF animé",
     category: "reaction",
@@ -253,7 +253,7 @@ ven({
     await sendReaction(conn, mek, m, "bully", "😈", "embêtement");
 });
 
-ven({
+cmd({
     pattern: "bonk",
     desc: "Envoyer une réaction de tape avec GIF animé",
     category: "reaction",
@@ -264,7 +264,7 @@ ven({
     await sendReaction(conn, mek, m, "bonk", "🔨", "tape");
 });
 
-ven({
+cmd({
     pattern: "poke",
     desc: "Envoyer une réaction de pique avec GIF animé",
     category: "reaction",
@@ -275,7 +275,7 @@ ven({
     await sendReaction(conn, mek, m, "poke", "👉", "pique");
 });
 
-ven({
+cmd({
     pattern: "wave",
     desc: "Envoyer une réaction de salut avec GIF animé",
     category: "reaction",
@@ -286,7 +286,7 @@ ven({
     await sendReaction(conn, mek, m, "wave", "👋", "salut");
 });
 
-ven({
+cmd({
     pattern: "smile",
     desc: "Envoyer une réaction de sourire avec GIF animé",
     category: "reaction",
@@ -297,7 +297,7 @@ ven({
     await sendReaction(conn, mek, m, "smile", "😊", "sourire");
 });
 
-ven({
+cmd({
     pattern: "dance",
     desc: "Envoyer une réaction de danse avec GIF animé",
     category: "reaction",
@@ -308,7 +308,7 @@ ven({
     await sendReaction(conn, mek, m, "dance", "💃", "danse");
 });
 
-ven({
+cmd({
     pattern: "happy",
     desc: "Envoyer une réaction de joie avec GIF animé",
     category: "reaction",
@@ -319,7 +319,7 @@ ven({
     await sendReaction(conn, mek, m, "happy", "😊", "joie");
 });
 
-ven({
+cmd({
     pattern: "awoo",
     desc: "Envoyer une réaction awoo avec GIF animé",
     category: "reaction",
@@ -330,7 +330,7 @@ ven({
     await sendReaction(conn, mek, m, "awoo", "🐺", "awoo");
 });
 
-ven({
+cmd({
     pattern: "blush",
     desc: "Envoyer une réaction de rougissement avec GIF animé",
     category: "reaction",
@@ -341,7 +341,7 @@ ven({
     await sendReaction(conn, mek, m, "blush", "😊", "rougissement");
 });
 
-ven({
+cmd({
     pattern: "smug",
     desc: "Envoyer une réaction suffisante avec GIF animé",
     category: "reaction",
@@ -352,7 +352,7 @@ ven({
     await sendReaction(conn, mek, m, "smug", "😏", "suffisance");
 });
 
-ven({
+cmd({
     pattern: "nom",
     desc: "Envoyer une réaction de manger avec GIF animé",
     category: "reaction",
@@ -363,7 +363,7 @@ ven({
     await sendReaction(conn, mek, m, "nom", "🍽️", "manger");
 });
 
-ven({
+cmd({
     pattern: "wink",
     desc: "Envoyer une réaction de clin d'œil avec GIF animé",
     category: "reaction",
@@ -374,7 +374,7 @@ ven({
     await sendReaction(conn, mek, m, "wink", "😉", "clin d'œil");
 });
 
-ven({
+cmd({
     pattern: "bite",
     desc: "Envoyer une réaction de mordre avec GIF animé",
     category: "reaction",
@@ -385,7 +385,7 @@ ven({
     await sendReaction(conn, mek, m, "bite", "🦷", "mordre");
 });
 
-ven({
+cmd({
     pattern: "lick",
     desc: "Envoyer une réaction de lécher avec GIF animé",
     category: "reaction",
@@ -396,7 +396,7 @@ ven({
     await sendReaction(conn, mek, m, "lick", "👅", "lécher");
 });
 
-ven({
+cmd({
     pattern: "yeet",
     desc: "Envoyer une réaction yeet avec GIF animé",
     category: "reaction",
@@ -407,7 +407,7 @@ ven({
     await sendReaction(conn, mek, m, "yeet", "💨", "yeet");
 });
 
-ven({
+cmd({
     pattern: "handhold",
     desc: "Envoyer une réaction de tenir la main avec GIF animé",
     category: "reaction",
@@ -418,7 +418,7 @@ ven({
     await sendReaction(conn, mek, m, "handhold", "🤝", "tenir la main");
 });
 
-ven({
+cmd({
     pattern: "highfive",
     desc: "Envoyer une réaction de tape-là avec GIF animé",
     category: "reaction",
@@ -429,7 +429,7 @@ ven({
     await sendReaction(conn, mek, m, "highfive", "✋", "tape-là");
 });
 
-ven({
+cmd({
     pattern: "glomp",
     desc: "Envoyer une réaction de saut-câlin avec GIF animé",
     category: "reaction",
@@ -440,7 +440,7 @@ ven({
     await sendReaction(conn, mek, m, "glomp", "🤗", "saut-câlin");
 });
 
-ven({
+cmd({
     pattern: "cringe",
     desc: "Envoyer une réaction de malaise avec GIF animé",
     category: "reaction",
@@ -451,7 +451,7 @@ ven({
     await sendReaction(conn, mek, m, "cringe", "😬", "malaise");
 });
 
-ven({
+cmd({
     pattern: "kill",
     desc: "Envoyer une réaction de tuer avec GIF animé",
     category: "reaction",

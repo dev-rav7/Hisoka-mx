@@ -1,17 +1,17 @@
 const fs = require('fs');
-const config = require('../settings')
-const { ven, commands } = require('../hisoka')
+const config = require('../config')
+const { cmd, commands } = require('../command')
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson} = require('../lib/functions')
 
 
 
 //vcf//
 
-ven({
+cmd({
     pattern: 'savecontact',
     alias: ["vcf","scontact","savecontacts"],
     desc: 'gc vcard',
-    category: 'group',
+    category: 'tools',
     filename: __filename
 }, async (conn, mek, m, { from, quoted, body, isCmd, command, args, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
@@ -39,8 +39,8 @@ ven({
         await conn.sendMessage(from, {
             document: fs.readFileSync(nmfilect), 
             mimetype: 'text/vcard', 
-            fileName: '𝕽𝖆𝖛𝖊𝖓.vcf', 
-            caption: `\nDone saving.\nGroup Name: *${cmiggc.subject}*\nContacts: *${cmiggc.participants.length}*\n> ᴘᴏᴡᴇʀᴇᴅ ʙʏ hhhisoka `}, { quoted: mek });
+            fileName: 'ʜᴜɴᴛᴇʀ xᴍᴅ.vcf', 
+            caption: `\nDone saving.\nGroup Name: *${cmiggc.subject}*\nContacts: *${cmiggc.participants.length}*\n> ᴘᴏᴡᴇʀᴇᴅ ʙʏ 『𝙒𝘼・𝙃𝙄𝙎・𝙑𝟭』`}, { quoted: mek });
 
         fs.unlinkSync(nmfilect); // Cleanup the file after sending
     } catch (err) {

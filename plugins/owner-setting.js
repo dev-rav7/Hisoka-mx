@@ -1,10 +1,9 @@
-const { ven ,commands } = require('../hisoka');
+const { cmd ,commands } = require('../command');
 const { exec } = require('child_process');
-const config = require('../settings');
+const config = require('../config');
 const {sleep} = require('../lib/functions')
-const { downloadMediaMessage } = require('@whiskeysockets/baileys');
 // 1. Shutdown Bot
-ven({
+cmd({
     pattern: "shutdown",
     desc: "Shutdown the bot.",
     category: "owner",
@@ -16,7 +15,7 @@ async (conn, mek, m, { from, isOwner, reply }) => {
     reply("🛑 Shutting down...").then(() => process.exit());
 });
 // 2. Broadcast Message to All Groups
-ven({
+cmd({
     pattern: "broadcast",
     desc: "Broadcast a message to all groups.",
     category: "owner",
@@ -34,7 +33,7 @@ async (conn, mek, m, { from, isOwner, args, reply }) => {
     reply("📢 Message broadcasted to all groups.");
 });
 // 3. Set Profile Picture
-ven({
+cmd({
     pattern: "setpp",
     desc: "Set bot profile picture.",
     category: "owner",
@@ -45,7 +44,7 @@ async (conn, mek, m, { from, isOwner, quoted, reply }) => {
     if (!isOwner) return reply("❌ You are not the owner!");
     if (!quoted || !quoted.message.imageMessage) return reply("❌ Please reply to an image.");
     try {
-        const media = await downloadMediaMessage(quoted);
+        const media = await conn.downloadMediaMessage(quoted);
         await conn.updateProfilePicture(conn.user.jid, { url: media });
         reply("🖼️ Profile picture updated successfully!");
     } catch (error) {
@@ -54,7 +53,7 @@ async (conn, mek, m, { from, isOwner, quoted, reply }) => {
 });
 
 // 6. Clear All Chats
-ven({
+cmd({
     pattern: "clearchats",
     desc: "Clear all chats from the bot.",
     category: "owner",
@@ -74,8 +73,19 @@ async (conn, mek, m, { from, isOwner, reply }) => {
     }
 });
 
+cmd({
+    pattern: "jid",
+    desc: "Get the bot's JID.",
+    category: "owner",
+    react: "🤖",
+    filename: __filename
+},
+async (conn, mek, m, { from, isOwner, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
+    reply(`🤖 *Bot JID:* ${conn.user.jid}`);
+});
 // 8. Group JIDs List
-ven({
+cmd({
     pattern: "gjid",
     desc: "Get the list of JIDs for all groups the bot is part of.",
     category: "owner",
@@ -92,7 +102,7 @@ async (conn, mek, m, { from, isOwner, reply }) => {
 
 // delete 
 
-ven({
+cmd({
 pattern: "delete",
 react: "❌",
 alias: ["del"],
@@ -101,7 +111,7 @@ category: "group",
 use: '.del',
 filename: __filename
 },
-async(conn, mek, m,{from, l, quoted, body, isven, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants,  isItzcp, groupAdmins, isBotAdmins, isAdmins, reply}) => {
+async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants,  isItzcp, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 if (!isOwner ||  !isAdmins) return;
 try{
 if (!m.quoted) return reply(mg.notextfordel);
@@ -117,3 +127,4 @@ console.log(e);
 reply('successful..👨‍💻✅')
 } 
 })
+
