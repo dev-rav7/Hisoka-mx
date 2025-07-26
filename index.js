@@ -548,7 +548,7 @@ async function handleAutoReact(mek, senderNumber, isReact) {
 
 async function handleCommands(mek, m, context) {
   try {
-    const events = require('./hisoka')
+    const events = require('./command')
     const { body, isCmd } = context
     const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false
 

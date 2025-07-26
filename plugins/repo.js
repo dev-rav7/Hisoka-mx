@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
 const config = require('../settings');
-const { ven } = require('../hisoka');
+const { cmd } = require('../command');
 
-ven({
+cmd({
     pattern: "repo",
     alias: ["sc", "script", "info"],
     desc: "Fetch information about this GitHub repository.",

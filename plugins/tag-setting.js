@@ -1,9 +1,9 @@
 
-const { ven } = require('../hisoka');
-const config = require('../settings');
+const { cmd } = require('../command');
+const config = require('../config');
 
 // Auto-tag tous les membres
-ven({
+cmd({
     pattern: "tagall",
     react: "📢",
     desc: "Tag tous les membres du groupe",
@@ -12,7 +12,7 @@ ven({
     use: "[message]"
 }, async (conn, mek, m, { from, isGroup, isGroupAdmins, isOwner, args, reply }) => {
     if (!isGroup) return reply("⚠️ Cette commande ne fonctionne que dans les groupes !");
-    if (!isGroupAdmins && !isOwner) return reply("⚠️ Seuls les admins peuvent utiliser cette commande !");
+    if (!isGroupAdmins && !isOwner) return reply("⚠️ Seuls les admins peucmdt utiliser cette commande !");
 
     try {
         const groupMetadata = await conn.groupMetadata(from);
@@ -66,7 +66,7 @@ ven({
 });
 
 // Tag seulement les admins
-ven({
+cmd({
     pattern: "tagadmins",
     react: "👑",
     desc: "Tag tous les admins du groupe",
@@ -75,7 +75,7 @@ ven({
     use: "[message]"
 }, async (conn, mek, m, { from, isGroup, isGroupAdmins, isOwner, args, reply }) => {
     if (!isGroup) return reply("⚠️ Cette commande ne fonctionne que dans les groupes !");
-    if (!isGroupAdmins && !isOwner) return reply("⚠️ Seuls les admins peuvent utiliser cette commande !");
+    if (!isGroupAdmins && !isOwner) return reply("⚠️ Seuls les admins peucmdt utiliser cette commande !");
 
     try {
         const groupMetadata = await conn.groupMetadata(from);
@@ -135,7 +135,7 @@ ven({
 });
 
 // Tag les membres actifs
-ven({
+cmd({
     pattern: "tagactive",
     react: "⚡",
     desc: "Tag les membres actifs du groupe",
@@ -144,7 +144,7 @@ ven({
     use: "[message]"
 }, async (conn, mek, m, { from, isGroup, isGroupAdmins, isOwner, args, reply }) => {
     if (!isGroup) return reply("⚠️ Cette commande ne fonctionne que dans les groupes !");
-    if (!isGroupAdmins && !isOwner) return reply("⚠️ Seuls les admins peuvent utiliser cette commande !");
+    if (!isGroupAdmins && !isOwner) return reply("⚠️ Seuls les admins peucmdt utiliser cette commande !");
 
     try {
         const groupMetadata = await conn.groupMetadata(from);
@@ -162,8 +162,8 @@ ven({
             if (!activity) return false;
             
             // Considérer comme actif si message dans les 7 derniers jours
-            const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-            return activity.lastActive > sevenDaysAgo;
+            const secmdDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+            return activity.lastActive > secmdDaysAgo;
         });
 
         if (activeMembers.length === 0) {
