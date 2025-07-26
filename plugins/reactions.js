@@ -1,6 +1,6 @@
-const { cmd } = require("../hisoka");
+const { cmd } = require("../command");
 const axios = require("axios");
-const config = require("../settings");
+const config = require("../config");
 
 // Configuration des APIs pour les réactions
 const reactionAPIs = {
