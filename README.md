@@ -55,7 +55,7 @@
 
 <div align="center">
 
-[![Get Session ID](https://img.shields.io/badge/📱%20Générer-SESSION_ID-green?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa-his-session.onrender.com/)
+[![Get Session ID](https://img.shields.io/badge/📱%20Générer-SESSION_ID-green?style=for-the-badge&logo=whatsapp&logoColor=white)](https://bot-session-oitd.onrender.com/)
 
 **Obtenez votre code de jumelage sécurisé**
 
