@@ -76,13 +76,14 @@ async function sendReaction(conn, mek, m, reactionType, reactionEmoji, descripti
 
         // Message d'erreur stylé
         const errorMsg = `
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ ❌ 𝗘𝗥𝗥𝗘𝗨𝗥 𝗥𝗘𝗔𝗖𝗧𝗜𝗢𝗡        ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃ 🔄 Impossible de charger   ┃
+┏━━━━━━━━━━━━━━━━━━━━━┓
+┃ ❌ 𝗘𝗥𝗥𝗘𝗨𝗥 𝗥𝗘𝗔𝗖𝗧𝗜𝗢𝗡        
+┣━━━━━━━━━━━━━━━━━━━━┫
+┃ 🔄 Impossible de charger 
+
 ┃    la réaction ${reactionType}        ┃
-┃ 💡 Réessayez plus tard     ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┃ 💡 Réessayez plus tard     
+┗━━━━━━━━━━━━━━━━━━━━┛
         `.trim();
 
         await conn.sendMessage(mek.chat, { text: errorMsg }, { quoted: mek });

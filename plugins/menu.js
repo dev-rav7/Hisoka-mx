@@ -1,10 +1,10 @@
 const fs = require('fs');
-const config = require('../settings');
-const { ven, commands } = require('../hisoka');
+const config = require('../config');
+const { cmd, commands } = require('../command');
 const axios = require('axios');
 const { createBox, infoBox, createFooter } = require('../lib/msg-formatter');
 
-ven({
+cmd({
     pattern: "menu",
     react: "🤖",
     alias: ["allmenu"],
